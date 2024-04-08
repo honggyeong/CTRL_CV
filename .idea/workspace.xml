@@ -4,23 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/구해줘용.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/map/경찰서 위치.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/유저.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/helper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/needer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/signup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    <list default="true" id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="ㄴ">
+      <change afterPath="$PROJECT_DIR$/pages/login_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/map/경찰서 위치.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/출동기관_경찰.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/유저.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/사용자.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/needer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/needer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +51,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/" />
+      <recent name="$PROJECT_DIR$/data/출동기관" />
+      <recent name="$PROJECT_DIR$/pages" />
       <recent name="$PROJECT_DIR$/users/data" />
-      <recent name="$PROJECT_DIR$/users" />
-      <recent name="$PROJECT_DIR$/map" />
     </key>
   </component>
   <component name="RunManager">
@@ -102,6 +97,27 @@
       <option name="presentableId" value="Default" />
       <updated>1712379025327</updated>
     </task>
+    <task id="LOCAL-00001" summary="ㄴ">
+      <option name="closed" value="true" />
+      <created>1712409545915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712409545915</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ㄴ">
+      <option name="closed" value="true" />
+      <created>1712410458204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712410458204</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ㄴ" />
+    <option name="LAST_COMMIT_MESSAGE" value="ㄴ" />
   </component>
 </project>
