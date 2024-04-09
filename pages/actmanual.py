@@ -51,7 +51,7 @@ for i, row in police.iterrows():
     ).add_to(my_map)
 st.title('주변 경찰서의 위치입니다. 확인해보시기 바랍니다. ')
 st_folium(my_map)
-
+st.page_link("main.py", label='홈으로', icon='🏠')
 
 
 
