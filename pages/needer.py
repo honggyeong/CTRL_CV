@@ -57,7 +57,7 @@ def psh():
         contents = f.read()
 
 
-    repo.update_file(st.secrets["FILE_PATH1"], commit_message, contents, content.sha)
+    st.secrets["REPO"].update_file(st.secrets["FILE_PATH1"], commit_message, contents, content.sha)
 
 
 mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
