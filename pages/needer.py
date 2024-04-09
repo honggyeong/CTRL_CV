@@ -46,19 +46,19 @@ def psh():
     github = Github(token)
     repo = github.get_user(st.secrets["REPO_OWNER"]).get_repo(st.secrets["REPO_NAME"])
 
-    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH"]}'
+    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH1"]}'
     response = requests.get(url)
 
 
     df = pd.read_csv(StringIO(response.text))
     df['test_col'] = "new_test_val"
 
-    content = repo.get_contents(st.secrets["FILE_PATH"])
+    content = repo.get_contents(st.secrets["FILE_PATH1"])
     with open('emergency.csv', 'rb') as f:
         contents = f.read()
 
 
-    repo.update_file(st.secrets["FILE_PATH"], commit_message, contents, content.sha)
+    repo.update_file(st.secrets["FILE_PATH1"], commit_message, contents, content.sha)
 
 
 mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
