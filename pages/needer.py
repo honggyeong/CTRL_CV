@@ -39,9 +39,9 @@ st.write(a+'님', '안녕하세요')
 
 st.title('도움받기')
 def psh():
-    repo_owner = 'honggyeong'
-    repo_name = 'SAVEME'
-    file_path = 'data/emergency.csv'
+    repo_owner = st.secrets["REPO_OWNER"]
+    repo_name = st.secrets["REPO_NAME"]
+    file_path = st.secrets["FILE_PATH"]
     token = st.secrets["GIT_TOKEN"]
     commit_message = 'Update CSV file'
 
