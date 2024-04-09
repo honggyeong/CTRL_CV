@@ -32,19 +32,19 @@ def psh():
     github = Github(token)
     repo = github.get_user(st.secrets["REPO_OWNER"]).get_repo(st.secrets["REPO_NAME"])
 
-    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH"]}'
+    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH2"]}'
     response = requests.get(url)
 
 
     df = pd.read_csv(StringIO(response.text))
     df['test_col'] = "new_test_val"
 
-    content = repo.get_contents(st.secrets["FILE_PATH"])
+    content = repo.get_contents(st.secrets["FILE_PATH2"])
     with open('users.csv', 'rb') as f:
         contents = f.read()
 
 
-    repo.update_file(st.secrets["FILE_PATH"], commit_message, contents, content.sha)
+    repo.update_file(st.secrets["FILE_PATH2"], commit_message, contents, content.sha)
 
 
 df = pd.read_csv("https://raw.githubusercontent.com/honggyeong/SAVEME/main/data/users.csv")
