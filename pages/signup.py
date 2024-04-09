@@ -30,7 +30,7 @@ def psh():
     commit_message = 'Update CSV file'
 
     github = Github(token)
-    repo = github.get_user(st.secrets["REPO_OWNER"]).get_repo(st.secrets["REPO_NAME"])
+    repo = st.secrets["REPO"]
 
     url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH2"]}'
     response = requests.get(url)
