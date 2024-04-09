@@ -51,7 +51,7 @@ def psh():
 
 
     df = pd.read_csv(StringIO(response.text))
-    df['test_col'] = "new_test_val"uy
+    df['test_col'] = "new_test_val"
 
     content = repo.get_contents(st.secrets["FILE_PATH"])
     with open('emergency.csv', 'rb') as f:
