@@ -39,28 +39,26 @@ st.write(a+'님', '안녕하세요')
 
 st.title('도움받기')
 def psh():
-    repo_owner = st.secrets["REPO_OWNER"]
-    repo_name = st.secrets["REPO_NAME"]
-    file_path = st.secrets["FILE_PATH"]
+ 
     token = st.secrets["GIT_TOKEN"]
     commit_message = 'Update CSV file'
 
     github = Github(token)
-    repo = github.get_user(repo_owner).get_repo(repo_name)
+    repo = github.get_user(st.secrets["REPO_OWNER"]).get_repo(st.secrets["REPO_NAME"])
 
-    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
+    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH"]}'
     response = requests.get(url)
 
 
     df = pd.read_csv(StringIO(response.text))
-    df['test_col'] = "new_test_val"
+    df['test_col'] = "new_test_val"uy
 
-    content = repo.get_contents(file_path)
+    content = repo.get_contents(st.secrets["FILE_PATH"])
     with open('emergency.csv', 'rb') as f:
         contents = f.read()
 
 
-    repo.update_file(file_path, commit_message, contents, content.sha)
+    repo.update_file(st.secrets["FILE_PATH"], commit_message, contents, content.sha)
 
 
 mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
