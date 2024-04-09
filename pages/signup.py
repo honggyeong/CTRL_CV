@@ -37,14 +37,14 @@ def psh():
 
 
     df = pd.read_csv(StringIO(response.text))
-    df['test_col'] = "new_test_val"uy
+    df['test_col'] = "new_test_val"
 
     content = repo.get_contents(st.secrets["FILE_PATH"])
-    with open('emergency.csv', 'rb') as f:
+    with open('users.csv', 'rb') as f:
         contents = f.read()
 
 
-    repo.update_file(file_path, commit_message, contents, content.sha)
+    repo.update_file(st.secrets["FILE_PATH"], commit_message, contents, content.sha)
 
 
 df = pd.read_csv("https://raw.githubusercontent.com/honggyeong/SAVEME/main/data/users.csv")
