@@ -52,7 +52,7 @@ def psh():
     df = pd.read_csv(StringIO(response.text))
     df['test_col'] = "new_test_val"
 
-    content = st.secrets["REPO"].get_contents(st.secrets["FILE_PATH1"])
+    content = st.secrets['CONTENT']
     with open('emergency.csv', 'rb') as f:
         contents = f.read()
 
