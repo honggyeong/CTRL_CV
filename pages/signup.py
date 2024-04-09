@@ -25,24 +25,22 @@ st.markdown(
 
 
 def psh():
-    repo_owner = 'honggyeong'
-    repo_name = 'SAVEME'
-    file_path = 'data/users.csv'
+  
     token = st.secrets["GIT_TOKEN"]
     commit_message = 'Update CSV file'
 
     github = Github(token)
-    repo = github.get_user(repo_owner).get_repo(repo_name)
+    repo = github.get_user(st.secrets["REPO_OWNER"]).get_repo(st.secrets["REPO_NAME"])
 
-    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
+    url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH"]}'
     response = requests.get(url)
 
 
     df = pd.read_csv(StringIO(response.text))
-    df['test_col'] = "new_test_val"
+    df['test_col'] = "new_test_val"uy
 
-    content = repo.get_contents(file_path)
-    with open('users.csv', 'rb') as f:
+    content = repo.get_contents(st.secrets["FILE_PATH"])
+    with open('emergency.csv', 'rb') as f:
         contents = f.read()
 
 
