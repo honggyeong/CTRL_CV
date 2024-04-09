@@ -6,7 +6,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 st.set_page_config(initial_sidebar_state="collapsed",page_title='구해줘용',
     page_icon='🚓')
 
-token = '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'
+token = st.secrets["GIT_TOKEN"]
 st.session_state.token = token
 
 st.markdown(
