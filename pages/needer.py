@@ -46,7 +46,7 @@ def psh():
     github = Github(token)
     url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH1"]}'
     response = requests.get(url)
-    repo = st.secret['REPO']
+    repo = st.secrets['REPO']
 
     df = pd.read_csv(StringIO(response.text))
     df['test_col'] = "new_test_val"
