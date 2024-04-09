@@ -27,7 +27,7 @@ ynlog = 0
 placeholder = st.empty()
 def n():
     global name
-    name = st.text_input('이름', key="name")
+    name = st.text_input('이름')
     st.session_state.key = name
 
 
