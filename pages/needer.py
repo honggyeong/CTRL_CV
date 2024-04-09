@@ -44,7 +44,6 @@ def psh():
     commit_message = 'Update CSV file'
 
     github = Github(token)
-    repo = st.secrets["REPO"]
     url = f'https://raw.githubusercontent.com/{st.secrets["REPO_OWNER"]}/{st.secrets["REPO_NAME"]}/main/{st.secrets["FILE_PATH1"]}'
     response = requests.get(url)
 
@@ -57,7 +56,7 @@ def psh():
         contents = f.read()
 
 
-    st.secrets["REPO"].update_file(st.secrets["FILE_PATH1"], commit_message, contents, content.sha)
+    st.secrets["REPO"].update_file(st.secrets["FILE_PATH1"], commit_message, contents, st.secrets['CONTENT'].sha)
 
 
 mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
