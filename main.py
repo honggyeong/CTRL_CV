@@ -6,6 +6,9 @@ ssl._create_default_https_context = ssl._create_unverified_context
 st.set_page_config(initial_sidebar_state="collapsed",page_title='구해줘용',
     page_icon='🚓')
 
+token = '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'
+st.session_state.token = token
+
 st.markdown(
     """
 <style>

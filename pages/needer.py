@@ -42,7 +42,7 @@ def psh():
     repo_owner = 'honggyeong'
     repo_name = 'SAVEME'
     file_path = 'data/emergency.csv'
-    token = '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'
+    token = st.session_state.token
     commit_message = 'Update CSV file'
 
     github = Github(token)
