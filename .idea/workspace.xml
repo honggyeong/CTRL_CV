@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="ㄴ">
-      <change afterPath="$PROJECT_DIR$/pages/login_map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/Y_log.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/actmanual.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/police.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/map/경찰서 위치.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/출동기관_경찰.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/유저.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/사용자.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/needer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/needer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +41,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
@@ -113,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712410458204</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ㄴ">
+      <option name="closed" value="true" />
+      <created>1712584651913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712584651913</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

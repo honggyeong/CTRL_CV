@@ -13,6 +13,16 @@ from io import StringIO
 import ssl
 
 
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -20,7 +30,9 @@ df = pd.read_csv("https://raw.githubusercontent.com/honggyeong/SAVEME/main/data/
 
 
 a = st.session_state.key
-
+number = st.session_state.phone
+lat = st.session_state.lat
+lon = st.session_state.lon
 st.write(a+'님', '안녕하세요')
 
 
@@ -51,118 +63,186 @@ def psh():
     repo.update_file(file_path, commit_message, contents, content.sha)
 
 
+mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
+if mydata:
+
+    with st.container():
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            if st.button("납치🚓"):
+                uni = '납치'
+                eme = 4
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
+                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 1
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+            if st.button("화재🔥"):
+                uni = '화재'
+                eme = 3
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
+                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 2
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+        with col2:
+            if st.button("부상🚑"):
+                uni = '부상'
+                eme = 2
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
+                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 3
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+            if st.button("기타➕"):
+                uni = '기타'
+                eme = 1
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
+                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 4
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+
+else:
+
+    with st.container():
+        # Starting variables
+        center = [35.95, 128.25]
+        zoom = 6
+        use_time = False
+        colormap = plt.cm.YlOrRd
+        padding_geo_factor = 1 / 111111
+        interpolation_algo_dict = {
+            'idw': 'Inverse Distance Weighting (IDW)',
+            'tin': 'Triangular Irregular Network (TIN)'
+        }
+        is_extended_graph = True
+
+        # State variables
+        if 'center' not in st.session_state:
+            st.session_state.center = center
+
+        if 'source' not in st.session_state:
+            st.session_state.source = center
+
+        if 'zoom' not in st.session_state:
+            st.session_state.zoom = zoom
+
+        if "cost_type" not in st.session_state:
+            st.session_state.cost_type = 'distance'
+
+        # Map
+        m = folium.Map(location=center, zoom_start=zoom)
+
+        with st.form("map_form"):
+
+            # Map Controls
+            st.subheader('위치 선택')
+            st.caption('지도를 움직여 위치를 바꿔주세요')
+
+            # Create the map
+            with st.container():
+
+                # When the user pans the map ...
+                map_state_change = st_folium(
+                    m,
+                    key="new",
+                    height=300,
+                    width='100%',
+                    returned_objects=['center', 'zoom'],
+                )
+
+                st.write('⌖')
+
+                if 'center' in map_state_change:
+                    st.session_state.center = [map_state_change['center']['lat'], map_state_change['center']['lng']]
+                if 'zoom' in map_state_change:
+                    st.session_state.zoom = map_state_change['zoom']
+
+            with st.container():
+                col1, col2 = st.columns([2, 1])
+
+                with col1:
+                    dec = 10
+                    st.write(round(st.session_state.center[0], dec), ', ', round(st.session_state.center[1], dec))
+
+                with col2:
+                    submitted = st.form_submit_button("Set location")
+                    if submitted:
+                        st.session_state.source = st.session_state.center
+                        st.title('입력되었습니다')
+
+    with st.container():
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            if st.button("납치🚓"):
+                uni = '납치'
+                eme = 4
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
+                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 1
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+            if st.button("화재🔥"):
+                uni = '화재'
+                eme = 3
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
+                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 2
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+        with col2:
+            if st.button("부상🚑"):
+                uni = '부상'
+                eme = 2
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
+                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 3
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
+            if st.button("기타➕"):
+                uni = '기타'
+                eme = 1
+                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
+                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
+                new_df = df._append(df2, ignore_index=True)
+                df = new_df
+                df.to_csv('emergency.csv', index=False)
+                psh()
+                sit = 4
+                st.session_state.sit = sit
+                st.switch_page("pages/actmanual.py")
 
 
-with st.container():
-    # Starting variables
-    center = [35.95, 128.25]
-    zoom = 6
-    use_time = False
-    colormap = plt.cm.YlOrRd
-    padding_geo_factor = 1 / 111111
-    interpolation_algo_dict = {
-        'idw': 'Inverse Distance Weighting (IDW)',
-        'tin': 'Triangular Irregular Network (TIN)'
-    }
-    is_extended_graph = True
 
-    # State variables
-    if 'center' not in st.session_state:
-        st.session_state.center = center
-
-    if 'source' not in st.session_state:
-        st.session_state.source = center
-
-    if 'zoom' not in st.session_state:
-        st.session_state.zoom = zoom
-
-    if "cost_type" not in st.session_state:
-        st.session_state.cost_type = 'distance'
-
-    # Map
-    m = folium.Map(location=center, zoom_start=zoom)
-
-    with st.form("map_form"):
-
-        # Map Controls
-        st.subheader('위치 선택')
-        st.caption('지도를 움직여 위치를 바꿔주세요')
-
-        # Create the map
-        with st.container():
-
-            # When the user pans the map ...
-            map_state_change = st_folium(
-                m,
-                key="new",
-                height=300,
-                width='100%',
-                returned_objects=['center', 'zoom'],
-            )
-
-            st.write('⌖')
-
-            if 'center' in map_state_change:
-                st.session_state.center = [map_state_change['center']['lat'], map_state_change['center']['lng']]
-            if 'zoom' in map_state_change:
-                st.session_state.zoom = map_state_change['zoom']
-
-        with st.container():
-            col1, col2 = st.columns([2, 1])
-
-            with col1:
-                dec = 10
-                st.write(round(st.session_state.center[0], dec), ', ', round(st.session_state.center[1], dec))
-
-            with col2:
-                submitted = st.form_submit_button("Set location")
-                if submitted:
-                    st.session_state.source = st.session_state.center
-                    st.title('입력되었습니다')
-
-
-
-
-with st.container():
-    col1, col2 = st.columns([2,1])
-    with col1:
-        if st.button("납치🚓"):
-            uni = '납치'
-            eme = 4
-            df2 = pd.DataFrame({'이름': [a], '위도': [round(st.session_state.center[0], dec)], '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-            new_df = df._append(df2, ignore_index=True)
-            df = new_df
-            df.to_csv('emergency.csv', index=False)
-            psh()
-            st.write('접수신청을 하였습니다. 접수까지는 2분 정도 소요됩니다. ')
-        if st.button("화재🔥"):
-            uni = '화재'
-            eme = 3
-            df2 = pd.DataFrame({'이름': [a], '위도': [round(st.session_state.center[0], dec)], '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-            new_df = df._append(df2, ignore_index=True)
-            df = new_df
-            df.to_csv('emergency.csv', index=False)
-            psh()
-            st.write('접수신청을 하였습니다. 접수까지는 2분 정도 소요됩니다. ')
-    with col2:
-        if st.button("부상🚑"):
-            uni = '부상'
-            eme = 2
-            df2 = pd.DataFrame({'이름': [a],'위도': [round(st.session_state.center[0], dec)], '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-            new_df = df._append(df2, ignore_index=True)
-            df = new_df
-            df.to_csv('emergency.csv', index=False)
-            psh()
-            st.write('접수신청을 하였습니다. 접수까지는 2분 정도 소요됩니다. ')
-        if st.button("기타➕"):
-            uni = '기타'
-            eme = 1
-            df2 = pd.DataFrame({'이름': [a], '위도': [round(st.session_state.center[0], dec)], '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-            new_df = df._append(df2, ignore_index=True)
-            df = new_df
-            df.to_csv('emergency.csv', index=False)
-            psh()
-            st.write('접수신청을 하였습니다. 접수까지는 2분 정도 소요됩니다. ')
 
 
 
