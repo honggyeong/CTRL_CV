@@ -1,10 +1,12 @@
 
 
+import firebase_admin
 import folium
 import pandas as pd
 import streamlit as st
+from firebase_admin import credentials
+from firebase_admin import db
 from streamlit_folium import st_folium
-
 
 st.markdown(
     """
@@ -17,7 +19,39 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-act = st.session_state.sit
+if st.button('홈으로 가기'):
+    st.switch_page('main.py')
+def initialize_firebase():
+    if not firebase_admin._apps:
+        cred = credentials.Certificate("report-5a738-firebase-adminsdk-2xgba-7458315dfe.json")
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://report-5a738-default-rtdb.firebaseio.com/'
+        })
+    return firebase_admin.get_app()
+
+initialize_firebase()
+
+# Firebase 앱 초기화
+try:
+    app = initialize_firebase()
+    st.success("Firebase 초기화 성공")
+except Exception as e:
+    st.error(f"Firebase 초기화 오류: {e}")
+
+
+# Firebase에서 데이터 가져오기
+ref = db.reference("/reports/{}".format(st.session_state["name"]))
+data = ref.get()
+
+if data:
+    lat = data["latitude"]
+    lon = data["longitude"]
+    act = data["type"]
+
+    st.session_state.my_lat = lat
+    st.session_state.my_lon = lon
+else:
+    st.write("해당 사용자의 데이터가 없습니다.")
 st.title('행동강령')
 
 st.write('접수 신청이 완료되었습니다. 신고 등록은 약 5분정도 소요됩니다.')
@@ -51,7 +85,7 @@ for i, row in police.iterrows():
     ).add_to(my_map)
 st.title('주변 경찰서의 위치입니다. 확인해보시기 바랍니다. ')
 st_folium(my_map)
-st.page_link("main.py", label='홈으로', icon='🏠')
+
 
 
 

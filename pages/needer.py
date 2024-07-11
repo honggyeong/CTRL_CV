@@ -1,16 +1,15 @@
+import pandas as pd
+import ssl
 
-
-
-
+import firebase_admin
 import folium
 import matplotlib.pyplot as plt
-from streamlit_folium import st_folium
-import requests
-import streamlit as st
 import pandas as pd
-from github import Github
-from io import StringIO
-import ssl
+import streamlit as st
+from firebase_admin import credentials
+from firebase_admin import db
+from streamlit_folium import st_folium
+from streamlit_geolocation import streamlit_geolocation
 
 
 st.markdown(
@@ -25,104 +24,122 @@ st.markdown(
 )
 
 
+
+if st.button('홈으로 가기'):
+    st.switch_page('main.py')
+
+
+def initialize_firebase_report():
+    try:
+        # 이미 초기화된 앱이 있는지 확인
+        app = firebase_admin.get_app()
+    except ValueError:
+        # 앱이 초기화되지 않았다면 초기화
+        cred = credentials.Certificate("report-5a738-firebase-adminsdk-2xgba-7458315dfe.json")
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://report-5a738-default-rtdb.firebaseio.com/'
+        })
+
+    return firebase_admin.get_app()
+
+app2 = initialize_firebase_report()
+
+# 데이터 저장 함수
+def save_report(name, lat, lon, type):
+    ref_report.child("{}".format(name)).set({
+        'name': name,
+        'latitude': lat,
+        'longitude': lon,
+        'type': type
+    })
+    print(f"Report saved for {name}")
+
+# 데이터베이스 레퍼런스 가져오기
+ref_report = db.reference('reports', app=app2) # 'reports'는 데이터를 저장할 노드 이름입니다.
+ref_repo = db.reference('repo', app=app2) # 'reports'는 데이터를 저장할 노드 이름입니다.
+
+def save_repo(name, lat, lon, type):
+    ref_repo.child("users").set({
+        'name': name,
+        'latitude': lat,
+        'longitude': lon,
+        'type': type
+    })
+    print(f"Report saved for {name}")
+
+
+
+
+
+
+
 ssl._create_default_https_context = ssl._create_unverified_context
-df = pd.read_csv("https://raw.githubusercontent.com/honggyeong/SAVEME/main/data/emergency.csv")
-
-
-a = st.session_state.key
-number = st.session_state.phone
-lat = st.session_state.lat
-lon = st.session_state.lon
-st.write(a+'님', '안녕하세요')
-
-
-
-st.title('도움받기')
-def psh():
- 
-    repo_owner = st.secrets['REPO_OWNER']
-    repo_name = st.secrets['REPO_NAME']
-    file_path = st.secrets['FILE_PATH1']
-    token = st.secrets['GIT_TOKEN']
-    commit_message = 'Update CSV file'
-
-    github = Github(token)
-    repo = github.get_user(repo_owner).get_repo(repo_name)
-    st.write(repo)
-
-    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
-    response = requests.get(url)
-
-
-    df = pd.read_csv(StringIO(response.text))
-    df['test_col'] = "new_test_val"
-
-    content = repo.get_contents(file_path)
-    with open('emergency.csv', 'rb') as f:
-        contents = f.read()
-
-
-    repo.update_file(file_path, commit_message, contents, content.sha)
-
-
 mydata = st.checkbox('회원가입시 작성한 나의 위치 사용하기')
+geo = st.checkbox("나의 GPS위치 정보 사용하기")
+nam = st.session_state["name"]
 if mydata:
+    lon = st.session_state.my_lon
+    lat = st.session_state.my_lat
+    st.write(lat,lon)
 
     with st.container():
         col1, col2 = st.columns([2, 1])
         with col1:
             if st.button("납치🚓"):
                 uni = '납치'
-                eme = 4
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
-                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 1
-                st.session_state.sit = sit
+                save_report(nam,lat,lon,uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
             if st.button("화재🔥"):
                 uni = '화재'
-                eme = 3
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
-                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 2
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
         with col2:
             if st.button("부상🚑"):
                 uni = '부상'
-                eme = 2
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
-                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 3
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
             if st.button("기타➕"):
                 uni = '기타'
-                eme = 1
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [lat],
-                                    '경도': [lon], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 4
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
 
-else:
+elif geo:
 
+
+    location = streamlit_geolocation()
+    st.write(location)
+    lat = location['latitude']
+    lon = location['longitude']
+
+    with st.container():
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            if st.button("납치🚓"):
+                uni = '납치'
+                save_report(nam,lat,lon,uni)
+                save_repo(nam, lat, lon, uni)
+                st.switch_page("pages/actmanual.py")
+            if st.button("화재🔥"):
+                uni = '화재'
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
+                st.switch_page("pages/actmanual.py")
+        with col2:
+            if st.button("부상🚑"):
+                uni = '부상'
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
+                st.switch_page("pages/actmanual.py")
+            if st.button("기타➕"):
+                uni = '기타'
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
+                st.switch_page("pages/actmanual.py")
+else:
     with st.container():
         # Starting variables
         center = [35.95, 128.25]
@@ -153,14 +170,12 @@ else:
         m = folium.Map(location=center, zoom_start=zoom)
 
         with st.form("map_form"):
-
             # Map Controls
             st.subheader('위치 선택')
             st.caption('지도를 움직여 위치를 바꿔주세요')
 
             # Create the map
             with st.container():
-
                 # When the user pans the map ...
                 map_state_change = st_folium(
                     m,
@@ -190,59 +205,33 @@ else:
                         st.session_state.source = st.session_state.center
                         st.title('입력되었습니다')
 
+        # 위치가 설정되면 lat와 lon 변수를 정의합니다.
+        lat, lon = st.session_state.center
+
     with st.container():
         col1, col2 = st.columns([2, 1])
         with col1:
             if st.button("납치🚓"):
                 uni = '납치'
-                eme = 4
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
-                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 1
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
             if st.button("화재🔥"):
                 uni = '화재'
-                eme = 3
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
-                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 2
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
         with col2:
             if st.button("부상🚑"):
                 uni = '부상'
-                eme = 2
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
-                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 3
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
             if st.button("기타➕"):
                 uni = '기타'
-                eme = 1
-                df2 = pd.DataFrame({'이름': [a], '전화번호': [number], '위도': [round(st.session_state.center[0], dec)],
-                                    '경도': [round(st.session_state.center[1], dec)], '유형': [uni], '위급정도': [eme]})
-                new_df = df._append(df2, ignore_index=True)
-                df = new_df
-                df.to_csv('emergency.csv', index=False)
-                psh()
-                sit = 4
-                st.session_state.sit = sit
+                save_report(nam, lat, lon, uni)
+                save_repo(nam, lat, lon, uni)
                 st.switch_page("pages/actmanual.py")
-
 
 
 

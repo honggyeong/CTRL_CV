@@ -1,9 +1,18 @@
-import pandas as pd
+import firebase_admin
 import streamlit as st
-import ssl
+from firebase_admin import credentials
+from firebase_admin import db
+import yaml
+from yaml.loader import SafeLoader
+import streamlit_authenticator as stauth
+from streamlit_authenticator.utilities.exceptions import (CredentialsError,
+                                                          ForgotError,
+                                                          LoginError,
+                                                          RegisterError,
+                                                          ResetError,
+                                                          UpdateError)
 
 
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
 st.markdown(
@@ -18,56 +27,122 @@ st.markdown(
 )
 
 
-df = pd.read_csv("https://raw.githubusercontent.com/honggyeong/SAVEME/main/data/users.csv")
 
+def initialize_firebase():
+    if not firebase_admin._apps:
+        cred = credentials.Certificate("apptodo-94411-firebase-adminsdk-solfc-99647dccf6.json")
+        firebase_admin.initialize_app(cred, {
+            'databaseURL': 'https://apptodo-94411-default-rtdb.firebaseio.com'
+        })
+    return firebase_admin.get_app()
 
-ynlog = 0
-
-
-placeholder = st.empty()
-def n():
-    global name
-    name = st.text_input('이름')
-    st.session_state.key = name
-
-
-
-
-
-placeholder = st.empty()
-oo = st.empty()
-
-
-with placeholder.container():
-    st.title('구해줘용 (KOREA No.1  SAFETY)')
-    st.title('정보를 입력해주세요')
-    n()
-    result = df[df['이름'] == name]
-    st.write('조회되는 회원님의 정보는 다음과 같습니다. 맞다면 확인을 눌러주세요. ', result)
-    if st.button('확인'):
-        if (df['이름'] == name).any() == True:
-
-
-            pdf = df.loc[df.이름 == name, ['전화번호']]
-            st.dataframe(pdf)
-
-            phone = pdf.iloc[0,0]
-            lati = df.loc[df.이름 == name, ['위도']]
-            lat = lati.iloc[0,0]
-            long = df.loc[df.이름 == name, ['경도']]
-            lon = long.iloc[0, 0]
+# Firebase 앱 초기화
+try:
+    app = initialize_firebase()
+    st.success("Firebase 초기화 성공")
+except Exception as e:
+    st.error(f"Firebase 초기화 오류: {e}")
 
 
 
+# Loading config file
+with open('/Users/cheonhong-gyeong/PycharmProjects/구해줘용/config/config.yaml', 'r', encoding='utf-8') as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
-            st.session_state.phone = phone
-            st.session_state.lat = lat
-            st.session_state.lon = lon
-            st.write(name + '님', '로그인 되었습니다.')
+# Creating the authenticator object
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
 
-            st.page_link("pages/Y_log.py", label='홈으로', icon='🤚')
-        elif (df['이름'] == name).any() == False:
-            st.write('로그인에 실패하였습니다.')
-            st.page_link("pages/signup.py", label='회원가입하기', icon='🤚')
+# Creating a login widget
+try:
+    authenticator.login()
+except LoginError as e:
+    st.error(e)
+if st.session_state["authentication_status"] == True:
+    authenticator.logout()
+    st.write(f'반갑습니다 *{st.session_state["name"]}*님')
+
+    # Firebase에서 데이터 가져오기
+    if "name" in st.session_state:
+        ref = db.reference("/locations/{}".format(st.session_state["name"]))
+        data = ref.get()
+        if data:
+            st.write("사용자 데이터:", data)
+            lat = data["latitude"]
+            lon = data["longitude"]
+            st.session_state.my_lat = lat
+            st.session_state.my_lon = lon
+        else:
+            st.write("해당 사용자의 데이터가 없습니다.")
     else:
-        st.page_link("main.py", label='홈으로 가기', icon='🤚')
+        st.warning("사용자 이름이 설정되지 않았습니다.")
+
+
+    st.title('무엇을 할까요?')
+    if st.button("도움받기🤚"):
+        st.switch_page("pages/needer.py")
+    if st.button("도와주기💪"):
+        st.switch_page("pages/helper.py")
+    if st.button("경찰서위치보기🚔"):
+        st.switch_page("pages/police.py")
+    if st.button('홈으로 가기'):
+        st.switch_page('main.py')
+
+elif st.session_state["authentication_status"] is False:
+    st.error('아이디/비밀번호가 맞지 않습니다.')
+elif st.session_state["authentication_status"] is None:
+    st.warning('아이디와 비밀번호를 입력해주세요.')
+
+# Creating a password reset widget
+if st.session_state["authentication_status"] == False:
+    try:
+        if authenticator.reset_password(st.session_state["username"]):
+            st.success('비밀번호가 변경되었습니다.')
+    except ResetError as e:
+        st.error(e)
+    except CredentialsError as e:
+        st.error(e)
+
+# # Creating a forgot password widget
+if st.session_state["authentication_status"] == False:
+    try:
+        (username_of_forgotten_password,
+            email_of_forgotten_password,
+            new_random_password) = authenticator.forgot_password()
+        if username_of_forgotten_password:
+            st.success('새로운 비밀번호를 전송했습니다.')
+            # Random password to be transferred to the user securely
+        elif not username_of_forgotten_password:
+            st.error('아이디를 찾을 수 없습니다. ')
+    except ForgotError as e:
+        st.error(e)
+
+# # Creating a forgot username widget
+if st.session_state["authentication_status"] == False:
+    try:
+        (username_of_forgotten_username,
+            email_of_forgotten_username) = authenticator.forgot_username()
+        if username_of_forgotten_username:
+            st.success('Username sent securely')
+            # Username to be transferred to the user securely
+        elif not username_of_forgotten_username:
+            st.error('Email not found')
+    except ForgotError as e:
+        st.error(e)
+
+# # Creating an update user details widget
+if st.session_state["authentication_status"] == False:
+    try:
+        if authenticator.update_user_details(st.session_state["username"]):
+            st.success('항목이 업데이트 되었습니다. ')
+    except UpdateError as e:
+        st.error(e)
+
+# Saving config file
+with open('/Users/cheonhong-gyeong/PycharmProjects/구해줘용/config/config.yaml', 'w', encoding='utf-8') as file:
+    yaml.dump(config, file, default_flow_style=False)

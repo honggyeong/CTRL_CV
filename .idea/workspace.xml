@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="ㄴ">
+      <change afterPath="$PROJECT_DIR$/Streamlit-Authenticator" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apptodo-94411-firebase-adminsdk-solfc-99647dccf6.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emergency.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/analyze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report-5a738-firebase-adminsdk-2xgba-7458315dfe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/serviceAccountKey.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/streamlit-bokeh-events" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Streamlit-Authenticator/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/Y_log.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/actmanual.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/actmanual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/needer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/needer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +38,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -38,22 +58,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;slpme&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/data/출동기관" />
       <recent name="$PROJECT_DIR$/pages" />
-      <recent name="$PROJECT_DIR$/users/data" />
     </key>
   </component>
   <component name="RunManager">
@@ -83,11 +105,14 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
       <changelist id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="" />
