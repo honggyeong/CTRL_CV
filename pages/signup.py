@@ -45,7 +45,7 @@ def save_location(name, latitude, longitude):
 ref = db.reference('locations', app=app) # 'locations'는 데이터를 저장할 노드 이름입니다.
 
 # Loading config file
-with open('/Users/cheonhong-gyeong/PycharmProjects/구해줘용/config/config.yaml', 'r', encoding='utf-8') as file:
+with open(st.secrets["yam"], 'r', encoding='utf-8') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 # Creating the authenticator object
@@ -156,5 +156,5 @@ if st.session_state["authentication_status"]:
         st.error(e)
 
 # Saving config file
-with open('/Users/cheonhong-gyeong/PycharmProjects/구해줘용/config/config.yaml', 'w', encoding='utf-8') as file:
+with open(st.secrets["yam"], 'w', encoding='utf-8') as file:
     yaml.dump(config, file, default_flow_style=False)
