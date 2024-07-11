@@ -30,9 +30,9 @@ st.markdown(
 
 def initialize_firebase():
     if not firebase_admin._apps:
-        cred = credentials.Certificate("apptodo-94411-firebase-adminsdk-solfc-99647dccf6.json")
+        cred = credentials.Certificate(st.secrets["app_todo_cert"])
         firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://apptodo-94411-default-rtdb.firebaseio.com'
+            'databaseURL': st.secrets["app_todo_url"]
         })
     return firebase_admin.get_app()
 

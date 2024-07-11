@@ -24,9 +24,9 @@ def initialize_firebase():
         app = firebase_admin.get_app()
     except ValueError:
         # 앱이 초기화되지 않았다면 초기화
-        cred = credentials.Certificate("apptodo-94411-firebase-adminsdk-solfc-99647dccf6.json")
+        cred = credentials.Certificate(st.secrets["app_todo_cert"])
         firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://apptodo-94411-default-rtdb.firebaseio.com/'
+            'databaseURL': st.secrets["app_todo_url"]
         })
 
     return firebase_admin.get_app()

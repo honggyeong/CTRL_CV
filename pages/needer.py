@@ -35,9 +35,9 @@ def initialize_firebase_report():
         app = firebase_admin.get_app()
     except ValueError:
         # 앱이 초기화되지 않았다면 초기화
-        cred = credentials.Certificate("report-5a738-firebase-adminsdk-2xgba-7458315dfe.json")
+        cred = credentials.Certificate(st.secrets["repo_cert"])
         firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://report-5a738-default-rtdb.firebaseio.com/'
+            'databaseURL': st.secrets["repo_url"]
         })
 
     return firebase_admin.get_app()

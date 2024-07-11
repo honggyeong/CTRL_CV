@@ -23,9 +23,9 @@ if st.button('홈으로 가기'):
     st.switch_page('main.py')
 def initialize_firebase():
     if not firebase_admin._apps:
-        cred = credentials.Certificate("report-5a738-firebase-adminsdk-2xgba-7458315dfe.json")
+        cred = credentials.Certificate(st.secrets["repo_cert"])
         firebase_admin.initialize_app(cred, {
-            'databaseURL': 'https://report-5a738-default-rtdb.firebaseio.com/'
+            'databaseURL': st.secrets["repo_url"]
         })
     return firebase_admin.get_app()
 
