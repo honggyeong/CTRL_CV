@@ -1,57 +1,87 @@
 cookie:
   expiry_days: 30
-  key: random_signature_key
-  name: random_cookie_name
+  key: your_secret_key
+  name: your_cookie_name
 credentials:
   usernames:
-    hong:
-      email: hong@gmail.com
-      failed_login_attempts: 0
-      logged_in: true
-      name: hong
-      password: $2b$12$ZFiMd8/Svdy0H1uc9WPmP.2H/RqZPDS8h4e4M7MY004sZfxD4cen2
-    honggyeong:
-      email: 07022osc@naver.com
+    dongum:
+      email: dh@gmail.com
       failed_login_attempts: 0
       logged_in: false
-      name: honggyeong
-      password: $2b$12$9gmKEF21b13bkbaQES4Wiu4JK6E0Mjbc4cKQ0ZJE5jaJuFzgsh4U.
-    jsmith:
-      email: jsmith@gmail.com
-      failed_login_attempts: 0
-      logged_in: false
-      name: John Smith
-      password: $2b$12$VzqC79Haf0zDDudHozzvIO4oDun4.gcOWpgVfhkEWKhl.xuuHhNfa
-    jun:
-      email: jun@gmail.com
+      name: dong ha
+      password: $2b$12$g0NHVsDQSZQCMJ6SW13pAedRPMycmpCC1PbM.YySyJ7ypQGdXylx6
+    gh:
+      email: gh@gmail.com
       failed_login_attempts: 0
       logged_in: true
-      name: jun
-      password: $2b$12$ZKNcikknQlm5sM34xtwiUe7e8hXNndj2WoP/2p.qKPq6s3eKoHVJe
-    junhyeong:
-      email: jjjj@gmail.com
+      name: gh
+      password: $2b$12$5Jo9iRFn4G.drcXV8woCkOJqTzJEfpTi3RIN//GRUVIYpGKTGId2S
+    hal:
+      email: hal@gmail.com
       failed_login_attempts: 0
       logged_in: false
-      name: junhyeong
-      password: $2b$12$1rIsJg.o1zXavPL6pNSTiO6IbeVR37D.g7/IsZ2w6YIoXTCKW7hGm
-    nice:
-      email: nice@gmail.com
+      name: hal
+      password: $2b$12$20Ch20CGKmlE1YuZmRjxNObZxS.kfn51gOkJCUj962qNVz8UYQzL2
+    hi:
+      email: hi@gmail.com
       failed_login_attempts: 0
       logged_in: true
-      name: nice
-      password: $2b$12$u1Hjk8BjeMKY0/gi1aKSWe8PezJ/JegNvwKWgJX9pRv2yMFIYjN2C
-    rbriggs:
-      email: rbriggs@gmail.com
+      name: hi
+      password: $2b$12$pAMURhnSCMwN7mImcBEm2uPMFKCL0DsQ6jwk.9cO9tG26psSBA3LK
+    hoho:
+      email: ho@gmail.com
       failed_login_attempts: 0
       logged_in: false
-      name: Rebecca Briggs
-      password: $2b$12$2h/0mj19qRNPtV835gf0ueejKIo8kugORWL.ZBNZiILQut3LhQbIy
-    tue:
-      email: tue@gmail.com
+      name: ho
+      password: $2b$12$e84jDkcro/R3jnLqvS.iuOwMl7SD0UmgULq618Q1UOVrn2lOmHHY.
+    hon:
+      email: hon@gmail.com
       failed_login_attempts: 0
-      logged_in: true
-      name: tue
-      password: $2b$12$b12cPAn8ixb5BbLixUPWNeuIe.QJIwNXcfyx35grf3nfDMzc99aIa
+      logged_in: false
+      name: hon
+      password: $2b$12$sIAssH8RZioGWMsClnTFiuKRC1G/7yFGAEPvSQE3RjZmkJnyDpOj6
+    jw:
+      email: jaewon07@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: jaewon
+      password: $2b$12$A6rQSDQg9mR8e8CsmTVyQOj0991RvBSiZownv7cqqiC/OyUTg/gx.
+    mm:
+      email: mm@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: mm
+      password: $2b$12$EtQ9lBq64wxCMotJRBimEO4yYTfPenkuqmiceWwBySGlkQlLK3p.i
+    oo:
+      email: oo@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: oo
+      password: $2b$12$cLenhYkk33nr34ou9DhglO9LrwuRlTgDDZj4zgj.S57dx/Pb6.kNe
+    user:
+      email: user@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: user
+      password: $2b$12$VP7LxeFfqvA5aGyjFLij1eK2ecalamZq.OtczPKrByYVwmCttVb8O
+    yang:
+      email: yy@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: yang
+      password: $2b$12$emB98U3sYR7DFQNf6gngNOBeuYrRoWjiQUv5rHkMmReEN5/C3/uXu
+    yo:
+      email: yo@gmail.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: yo
+      password: $2b$12$kKtbSt0CIBF5pn871S1KzuBHHjLDnlyc/DOi850JKFmKnePz5pD1W
+    your_username:
+      email: your_email@example.com
+      failed_login_attempts: 0
+      logged_in: false
+      name: Your Name
+      password: $2b$12$i.ekLf6W3O8zsteBmvISDuHcOz2BdXPcxaOZJYHjRbYsJCHKR2RgG
 preauthorized:
   emails:
-  - melsby@gmail.com
+  - your_email@example.com

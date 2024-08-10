@@ -5,7 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea8a9f8f-48bf-4356-91c4-168f6e6763f9" name="변경" comment="ㄴ">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/dasdlkashdlasdhlasd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recommended_tourist_spots.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/emergency.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/출동기관_경찰.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/actmanual.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/analyze.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/s_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/needer.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/s_place.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/police.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/signup.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +56,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "slpme",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;slpme&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/data/출동기관" />
       <recent name="$PROJECT_DIR$/pages" />
@@ -162,7 +176,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720700335305</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ㄴ">
+      <option name="closed" value="true" />
+      <created>1720700444787</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1720700444787</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ㄴ">
+      <option name="closed" value="true" />
+      <created>1720700582639</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1720700582639</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

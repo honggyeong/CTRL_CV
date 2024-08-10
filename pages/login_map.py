@@ -30,7 +30,7 @@ st.markdown(
 
 def initialize_firebase():
     if not firebase_admin._apps:
-        cred = credentials.Certificate(st.secrets["app_todo_cert"])
+        cred = credentials.Certificate(st.secrets['app_todo_cert'])
         firebase_admin.initialize_app(cred, {
             'databaseURL': st.secrets["app_todo_url"]
         })
@@ -46,7 +46,7 @@ except Exception as e:
 
 
 # Loading config file
-with open(st.secrets["yam"], 'r', encoding='utf-8') as file:
+with open("config/config.yaml", 'r', encoding='utf-8') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 # Creating the authenticator object
@@ -77,21 +77,19 @@ if st.session_state["authentication_status"] == True:
             lon = data["longitude"]
             st.session_state.my_lat = lat
             st.session_state.my_lon = lon
-        else:
-            st.write("해당 사용자의 데이터가 없습니다.")
     else:
         st.warning("사용자 이름이 설정되지 않았습니다.")
 
 
     st.title('무엇을 할까요?')
-    if st.button("도움받기🤚"):
-        st.switch_page("pages/needer.py")
-    if st.button("도와주기💪"):
-        st.switch_page("pages/helper.py")
-    if st.button("경찰서위치보기🚔"):
-        st.switch_page("pages/police.py")
+    if st.button("다른 사용자 보기"):
+        st.switch_page("pages/s_user.py")
+    if st.button("다른 사용자들의 여행지보기"):
+        st.switch_page("pages/s_place.py")
     if st.button('홈으로 가기'):
         st.switch_page('main.py')
+
+
 
 elif st.session_state["authentication_status"] is False:
     st.error('아이디/비밀번호가 맞지 않습니다.')
@@ -144,5 +142,6 @@ if st.session_state["authentication_status"] == False:
         st.error(e)
 
 # Saving config file
-with open(st.secrets["yam"], 'w', encoding='utf-8') as file:
+with open("config/config.yaml", 'w', encoding='utf-8') as file:
     yaml.dump(config, file, default_flow_style=False)
+
