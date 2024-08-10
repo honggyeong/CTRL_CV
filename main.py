@@ -7,19 +7,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 st.set_page_config(initial_sidebar_state="collapsed",page_title='TRIP_PELGANGER',
     page_icon='✈️')
 
-page_bg_img = f"""
-<style>
-[data-testid="stAppViewContainer"] > .main {{
-background-image: url("https://img.freepik.com/premium-photo/black-abstract-background-white-dots-black-background_73152-5632.jpg");
-background-size: 180%;
-background-position: top left;
-background-repeat: no-repeat;
-background-attachment: local;
-}}
-
-
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
 st.markdown(
     """
 <style>
