@@ -1,9 +1,1 @@
-[client]
-showErrorDetails = false
-
-[theme]
-primaryColor = "#F63366"
-backgroundColor = "black"
-
-
-streamlit config show
+[theme] backgroundColor="#FFA421"
