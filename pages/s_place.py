@@ -56,7 +56,7 @@ def get_location_info(api_key, latitude, longitude):
 
 # Function to get tourist spots from Naver API
 def get_tourist_spots(location, display=20):
-    CLIENT_ID = st.secrets["KAKO_ID"]
+    CLIENT_ID = st.secrets["KAKAO_ID"]
     CLIENT_SECRET = st.secrets["KAKAO_SECRET"]
     url = 'https://openapi.naver.com/v1/search/local.json'
     headers = {
